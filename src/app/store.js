@@ -1,14 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import studentReducer from '../features/Admin/StudentSlice';
-// import userReducer from "./userSlice";
+import authenticationSlice from "../features/Auth/authenticationSlice";
+import postReducer from "../features/PostsManage/PostSlice";
+import customerReducer from "../features/CustomersManage/CustomerSlice";
+import ToastMiddleware from '../middlewares/ToastMiddleware';
 
 const rootReducer = {
-  students: studentReducer
-//   user: userReducer,
-}
+  user: authenticationSlice,
+  posts: postReducer,
+  customers: customerReducer,
+};
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(ToastMiddleware),
 });
 
 export default store;

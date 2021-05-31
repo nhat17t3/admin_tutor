@@ -18,6 +18,14 @@ import {
   editCustomerError,
   deleteCustomerError,
 } from "../features/CustomersManage/CustomerSlice";
+import {
+  setLoginError,
+  setLoginSuccess,
+  setSignupError,
+  setSignupSuccess,
+  setUpdatePassSucess,
+  setUpdatePassError,
+} from "../features/Auth/authenticationSlice";
 import { toast } from "react-toastify";
 
 const ToastMiddleware = () => (next) => (action) => {
@@ -69,6 +77,24 @@ const ToastMiddleware = () => (next) => (action) => {
       break;
     case deleteCustomerError.type:
       toast.error("Error deleting Customer");
+      break;
+    case setLoginError.type:
+      toast.error("Login fail, please valid username or password");
+      break;
+    case setLoginSuccess.type:
+      toast.success("Login success");
+      break;
+    case setSignupError.type:
+      toast.error("Sign up  fail, username or email already taken");
+      break;
+    case setSignupSuccess.type:
+      toast.success("sign up success");
+      break;
+    case setUpdatePassSucess.type:
+      toast.success("update password success");
+      break;
+    case setUpdatePassError.type:
+      toast.error("update password error");
       break;
     default:
       break;

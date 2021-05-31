@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = (props) => {
   return (
@@ -17,7 +17,7 @@ const Header = (props) => {
             </a>
           </li>
           <li className="nav-item d-none d-sm-inline-block">
-            <NavLink to='#' className="nav-link">
+            <NavLink to="/" className="nav-link">
               Home
             </NavLink>
           </li>
@@ -27,9 +27,9 @@ const Header = (props) => {
             </a>
           </li>
           <li className="nav-item d-none d-sm-inline-block">
-            <a href="#" className="nav-link">
-              Product
-            </a>
+            <Link to="/listpost" className="nav-link">
+              Posts
+            </Link>
           </li>
         </ul>
         <form className="form-inline ml-3">

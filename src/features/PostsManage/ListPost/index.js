@@ -21,9 +21,9 @@ function ListPost(props) {
   // const [address, setAddress] = useState("All");
   const [listpost, setListpost] = useState([]);
 
-  // // const [loading, setLoading] = useState(false);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [postsPerPage] = useState(10);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [customersPerPage] = useState(8);
 
   useEffect(() => {
     GetPosts(dispatch);
@@ -35,12 +35,16 @@ function ListPost(props) {
     setListpost(posts);
   }, [posts]);
 
-  //  // Get current tutors
-  //  const indexOfLastPost = currentPage * postsPerPage;
-  //  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  //  const currentTutors = listpost.slice(indexOfFirstPost, indexOfLastPost);
-  //  // Change page
-  //  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // Get current posts
+   const indexOfLastCustomer = currentPage * customersPerPage;
+   const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
+   const currentCustomers = listpost.slice(
+     indexOfFirstCustomer,
+     indexOfLastCustomer
+   );
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   //  const checkfilter = (subject, grade, address, post) => {
   //   let checka = false;
   //   let checkb = false;
@@ -64,12 +68,6 @@ function ListPost(props) {
   //   setListpost(listfillter);
   // };
 
-  // const handlePostEditClick = (post) => {
-  //   console.log("Edit: ", post);
-  //   const editPostUrl = `/listpostedit/${post.id}`;
-  //   history.push(editPostUrl);
-  // };
-
   const handlePostViewClick = (post) => {
     console.log("View: ", post);
     const viewPostUrl = `/postview/${post.id}`;
@@ -86,58 +84,119 @@ function ListPost(props) {
       <Layout>
         <ToastContainer />
         <h1 className="text-center">List Post</h1>
-        <section className="content">
-          {/* Default box */}
-          <table className="table table-striped projects">
-            <thead>
-              <tr>
-                <th style={{ width: "10%" }}>ID</th>
-                <th style={{ width: "30%" }}>Title</th>
-                <th style={{ width: "10%" }}>Grade</th>
-                <th style={{ width: "10%" }}>Subject</th>
-                <th style={{ width: "10%" }}>Price</th>
-                <th style={{ width: "10%" }}>Address</th>
-                <th style={{ width: "20%" }} className="text-center">
-                  Action
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {listpost.map((post) => (
-                <PostItem
-                  post={post}
-                  onRemoveClick={handlePostRemoveClick}
-                  // onEditClick={handlePostEditClick}
-                  onViewClick={handlePostViewClick}
-                />
-              ))}
-            </tbody>
-          </table>
-
-          {/* /.card */}
-        </section>
+        <div className="row">
+          <div className="col-md-1" />
+          <div className="col-md-10">
+            <div className="card">
+              {/* <div className="card-header">
+                <h3 className="card-title">DataTable with default features</h3>
+              </div> */}
+              {/* /.card-header */}
+              <div className="card-body">
+                <div
+                  id="example1_wrapper"
+                  className="dataTables_wrapper dt-bootstrap4"
+                >
+                  <div className="row">
+                    <div className="col-sm-12 col-md-6">
+                      {/* <div className="dataTables_length" id="example1_length">
+                        <label>
+                          Show{" "}
+                          <select
+                            name="example1_length"
+                            aria-controls="example1"
+                            className="custom-select custom-select-sm form-control form-control-sm"
+                          >
+                            <option value={10}>10</option>
+                            <option value={25}>25</option>
+                            <option value={50}>50</option>
+                            <option value={100}>100</option>
+                          </select>{" "}
+                          entries
+                        </label>
+                      </div> */}
+                      
+                    </div>
+                    <div className="col-sm-12 col-md-6">
+                      <div id="example1_filter" className="dataTables_filter">
+                        <label>
+                          Search:
+                          <input
+                            type="search"
+                            className="form-control form-control-sm"
+                            placeholder
+                            aria-controls="example1"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-sm-12">
+                      <table
+                        id="example1"
+                        className="table table-bordered table-striped dataTable dtr-inline"
+                        role="grid"
+                        aria-describedby="example1_info"
+                      >
+                        <thead data-test="datatable-head">
+                          <tr>
+                            <th>id</th>
+                            <th>Title</th>
+                            <th>Grade</th>
+                            <th>Subject</th>
+                            <th>Price</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody data-test="table-body">
+                          {currentCustomers.map((post) => (
+                            <PostItem
+                              post={post}
+                              onRemoveClick={handlePostRemoveClick}
+                              onViewClick={handlePostViewClick}
+                            />
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-sm-12 col-md-5">
+                      {/* <div
+                        className="dataTables_info"
+                        id="example1_info"
+                        role="status"
+                        aria-live="polite"
+                      >
+                        Showing 1 to 10 of 57 entries
+                      </div> */}
+                    </div>
+                    <div className="col-sm-12 col-md-7">
+                      <div
+                        className="dataTables_paginate paging_simple_numbers"
+                        id="example1_paginate"
+                      >
+                        <Pagination
+                          customersPerPage={customersPerPage}
+                          totalCustomers={listpost.length}
+                          paginate={paginate}
+                          currentPage={currentPage}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* /.card-body */}
+            </div>
+          </div>
+          <div className="col-md-1" />
+        </div>
       </Layout>
     </>
   );
 }
 
 export default ListPost;
-
-// {currentTutors.map((post) => (
-//   <div key={post.id}>
-//     <PostItem
-//       post={post}
-//       onRemoveClick={handlePostRemoveClick}
-//       onEditClick={handlePostEditClick}
-//       onViewClick={handlePostViewClick}
-//     />
-//   </div>
-// ))}
-{
-  /* <Pagination
-postsPerPage={postsPerPage}
-totalPosts={listpost.length}
-paginate={paginate}
- />  */
-}

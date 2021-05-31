@@ -31,36 +31,23 @@ function CustomerItem(props) {
 
   return (
     <>
-      <tr key={customer.id}>
-        <td style={{ width: "10%" }}>{customer.id}</td>
-        <td style={{ width: "20%" }}>{customer.name}</td>
-        <td style={{ width: "20%" }}>{customer.email}</td>
-        <td style={{ width: "20%" }}>{customer.phonenumber}</td>
-        <td className="project-actions text-center" style={{ width: "20%" }}>
-          <button
-            className="btn btn-primary btn-sm "
-            style={{ margin: 5 }}
-            onClick={handleViewClick}
-          >
-            <i className="fas fa-folder"></i>
-            View
-          </button>
-          <button
-            className="btn btn-info btn-sm"
-            style={{ margin: 5 }}
-            onClick={handleEditClick}
-          >
-            <i className="fas fa-pencil-alt"></i>
-            Edit
-          </button>
-          <button
-            className="btn btn-danger btn-sm"
-            style={{ margin: 5 }}
-            onClick={handleRemoveClick}
-          >
-            <i className="fas fa-trash"></i>
-            Delete
-          </button>
+     <tr key={customer.id}>
+        <td>{customer.id}</td>
+        <td>{customer.username}</td>
+        <td>{customer.email}</td>
+        <td>{customer.phonenumber}</td>
+        <td>{customer.roles[0]}</td>
+        <td>
+          <div className="project-actions  text-center">
+            <button
+              className="btn btn-danger btn-sm"
+              style={{ margin: 5 }}
+              onClick={handleRemoveClick}
+            >
+              <i className="fas fa-trash"></i>
+              Delete
+            </button>
+          </div>
         </td>
       </tr>
     </>
@@ -68,3 +55,23 @@ function CustomerItem(props) {
 }
 
 export default CustomerItem;
+
+{
+  /* <tr key={customer.id}>
+<td style={{ width: "10%" }}>{customer.id}</td>
+<td style={{ width: "15%" }}>{customer.username}</td>
+<td style={{ width: "15%" }}>{customer.email}</td>
+<td style={{ width: "15%" }}>{customer.phonenumber}</td>
+<td style={{ width: "15%" }}>{customer.roles[0]}</td>
+<td className="project-actions text-center" style={{ width: "20%" }}>
+  <button
+    className="btn btn-danger btn-sm"
+    style={{ margin: 5 }}
+    onClick={handleRemoveClick}
+  >
+    <i className="fas fa-trash"></i>
+    Delete
+  </button>
+</td>
+</tr> */
+}

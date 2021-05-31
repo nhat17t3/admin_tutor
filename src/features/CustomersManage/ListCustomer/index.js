@@ -21,9 +21,9 @@ function ListCustomer(props) {
   // const [address, setAddress] = useState("All");
   const [listcustomer, setListcustomer] = useState([]);
 
-  // // const [loading, setLoading] = useState(false);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [customersPerPage] = useState(10);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [customersPerPage] = useState(8);
 
   useEffect(() => {
     GetCustomers(dispatch);
@@ -35,14 +35,16 @@ function ListCustomer(props) {
     setListcustomer(customers);
   }, [customers]);
 
-  
+  // Get current tutors
+  const indexOfLastCustomer = currentPage * customersPerPage;
+  const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
+  const currentCustomers = listcustomer.slice(
+    indexOfFirstCustomer,
+    indexOfLastCustomer
+  );
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  //  // Get current tutors
-  //  const indexOfLastCustomer = currentPage * customersPerPage;
-  //  const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
-  //  const currentTutors = listcustomer.slice(indexOfFirstCustomer, indexOfLastCustomer);
-  //  // Change page
-  //  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   //  const checkfilter = (subject, grade, address, customer) => {
   //   let checka = false;
   //   let checkb = false;
@@ -66,11 +68,11 @@ function ListCustomer(props) {
   //   setListcustomer(listfillter);
   // };
 
-  const handleCustomerEditClick = (customer) => {
-    console.log("Edit: ", customer);
-    const editCustomerUrl = `/customeredit/${customer.id}`;
-    history.push(editCustomerUrl);
-  };
+  // const handleCustomerEditClick = (customer) => {
+  //   console.log("Edit: ", customer);
+  //   const editCustomerUrl = `/customeredit/${customer.id}`;
+  //   history.push(editCustomerUrl);
+  // };
 
   // const handleCustomerViewClick = (customer) => {
   //   console.log("View: ", customer);
@@ -85,62 +87,126 @@ function ListCustomer(props) {
 
   return (
     <>
+    
       <Layout>
         <ToastContainer />
         <h1 className="text-center">List Customer</h1>
-        
-        <section className="content">
-        <Link className="btn btn-success" to="/addcustomer">Add Customer</Link>
-          {/* Default box */}
-          <table className="table table-striped projects">
-            <thead>
-              <tr>
-                <th style={{ width: "10%" }}>ID</th>
-                <th style={{ width: "20%" }}>Name</th>
-                <th style={{ width: "20%" }}>Email</th>
-                <th style={{ width: "20%" }}>Phonenumber</th>
-
-                <th style={{ width: "20%" }} className="text-center">
-                  Action
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {listcustomer.map((customer) => (
-                <CustomerItem
-                  customer={customer}
-                  onRemoveClick={handleCustomerRemoveClick}
-                  onEditClick={handleCustomerEditClick}
-                  // onViewClick={handleCustomerViewClick}
-                />
-              ))}
-            </tbody>
-          </table>
-
-          {/* /.card */}
-        </section>
+        <div className="row">
+          <div className="col-md-1" />
+          <div className="col-md-10">
+            <div className="card">
+              {/* <div className="card-header">
+                <h3 className="card-title">DataTable with default features</h3>
+              </div> */}
+              {/* /.card-header */}
+              <div className="card-body">
+                <div
+                  id="example1_wrapper"
+                  className="dataTables_wrapper dt-bootstrap4"
+                >
+                  <div className="row">
+                    <div className="col-sm-12 col-md-6">
+                      {/* <div className="dataTables_length" id="example1_length">
+                        <label>
+                          Show{" "}
+                          <select
+                            name="example1_length"
+                            aria-controls="example1"
+                            className="custom-select custom-select-sm form-control form-control-sm"
+                          >
+                            <option value={10}>10</option>
+                            <option value={25}>25</option>
+                            <option value={50}>50</option>
+                            <option value={100}>100</option>
+                          </select>{" "}
+                          entries
+                        </label>
+                      </div> */}
+                      <Link className="btn btn-success" to="/addcustomer">
+                        Add Customer
+                      </Link>
+                    </div>
+                    <div className="col-sm-12 col-md-6">
+                      <div id="example1_filter" className="dataTables_filter">
+                        <label>
+                          Search:
+                          <input
+                            type="search"
+                            className="form-control form-control-sm"
+                            placeholder
+                            aria-controls="example1"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-sm-12">
+                      <table
+                        id="example1"
+                        className="table table-bordered table-striped dataTable dtr-inline"
+                        role="grid"
+                        aria-describedby="example1_info"
+                      >
+                        <thead data-test="datatable-head">
+                          <tr>
+                            <th>id</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Phonenumber</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody data-test="table-body">
+                          {currentCustomers.map((customer) => (
+                            <CustomerItem
+                              customer={customer}
+                              onRemoveClick={handleCustomerRemoveClick}
+                              // onEditClick={handleCustomerEditClick}
+                              // onViewClick={handleCustomerViewClick}
+                            />
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-sm-12 col-md-5">
+                      {/* <div
+                        className="dataTables_info"
+                        id="example1_info"
+                        role="status"
+                        aria-live="polite"
+                      >
+                        Showing 1 to 10 of 57 entries
+                      </div> */}
+                    </div>
+                    <div className="col-sm-12 col-md-7">
+                      <div
+                        className="dataTables_paginate paging_simple_numbers"
+                        id="example1_paginate"
+                      >
+                        <Pagination
+                          customersPerPage={customersPerPage}
+                          totalCustomers={listcustomer.length}
+                          paginate={paginate}
+                          currentPage={currentPage}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* /.card-body */}
+            </div>
+          </div>
+          <div className="col-md-1" />
+        </div>
       </Layout>
+    
     </>
   );
 }
 
 export default ListCustomer;
-
-// {currentTutors.map((customer) => (
-//   <div key={customer.id}>
-//     <CustomerItem
-//       customer={customer}
-//       onRemoveClick={handleCustomerRemoveClick}
-//       onEditClick={handleCustomerEditClick}
-//       onViewClick={handleCustomerViewClick}
-//     />
-//   </div>
-// ))}
-{
-  /* <Pagination
-customersPerPage={customersPerPage}
-totalCustomers={listcustomer.length}
-paginate={paginate}
- />  */
-}

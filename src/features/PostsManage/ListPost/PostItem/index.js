@@ -3,23 +3,19 @@ import PropTypes from "prop-types";
 
 PostItem.propTypes = {
   post: PropTypes.object,
-  onEditClick: PropTypes.func,
+  onViewClick: PropTypes.func,
   onRemoveClick: PropTypes.func,
 };
 
 PostItem.defaultProps = {
   post: {},
-  onEditClick: null,
   onRemoveClick: null,
   onViewClick: null,
 };
 
 function PostItem(props) {
-  const { post, onEditClick, onRemoveClick, onViewClick } = props;
+  const { post, onRemoveClick, onViewClick } = props;
 
-  // const handleEditClick = () => {
-  //   if (onEditClick) onEditClick(post);
-  // };
 
   const handleRemoveClick = () => {
     if (onRemoveClick) onRemoveClick(post);
@@ -47,10 +43,10 @@ function PostItem(props) {
             <i className="fas fa-folder"></i>
             View
           </button>
-          <button className="btn btn-info btn-sm" style={{ margin: 5 }}>
+          {/* <button className="btn btn-info btn-sm" style={{ margin: 5 }}>
             <i className="fas fa-pencil-alt"></i>
             Edit
-          </button>
+          </button> */}
           <button
             className="btn btn-danger btn-sm"
             style={{ margin: 5 }}

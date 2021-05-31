@@ -5,29 +5,15 @@ import Header from "../Header";
 import Sidebar from "../Sidebar";
 
 const Layout = (props) => {
-
   return (
     <>
-      <div className="wrapper" >
+      <div className="wrapper">
         <Header />
         <Sidebar />
         {/* <!-- Main content --> */}
         <div class="content-wrapper">
           <section className="content">
-            <div className="container-fluid" style={{ marginBottom: "-20px" }}>
-              <div className="row mb-2">
-                <div className="col-sm-6"></div>
-                <div className="col-sm-6">
-                  <ol className="breadcrumb float-sm-right">
-                    <li className="breadcrumb-item">
-                      <NavLink to={`/`}>Home</NavLink>
-                    </li>
-                    {props.title ? (
-                      <li className="breadcrumb-item active">{props.title}</li>
-                    ) : null}
-                  </ol>
-                </div>
-              </div>
+            <div className="container-fluid" style={{ paddingTop: "20px" }}>
             </div>
           </section>
           {props.children}
@@ -39,7 +25,6 @@ const Layout = (props) => {
           {/* <!-- Control sidebar content goes here --> */}
         </aside>
       </div>
-      
     </>
   );
 };

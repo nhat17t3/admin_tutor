@@ -3,7 +3,6 @@ import Layout from "./components/Layout";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Login from "./features/Auth/Login";
 import Register from "./features/Auth/Register";
-import { GetProfile } from "./api/authenticationAPI";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import ListPost from "./features/PostsManage/ListPost";
@@ -12,16 +11,24 @@ import ListCustomer from "./features/CustomersManage/ListCustomer";
 import AddCustomer from "./features/CustomersManage/AddCustomer";
 import EditCustomer from "./features/CustomersManage/Editcustomer";
 import EditCustomer1 from "./features/CustomersManage/Editcustomer";
+import { userAuthenticated } from "./features/Auth/authenticationSlice";
+import { GetProfile } from "./api/userApi";
+import UpdatePass from "./features/Auth/UpdatePass";
+import Main from "./components/Main";
 
 function App() {
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  // const { role } = useSelector((state) => state.user.user);
+  // console.log("role", role);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
     if (token !== undefined && token !== null) {
-      GetProfile(dispatch, token);
-      // dispatch(userAuthenticated({ token: token }));
+      dispatch(userAuthenticated({ accessToken: token, roles: role }));
+      // GetProfile(dispatch);
     }
   }, []);
 
@@ -32,7 +39,7 @@ function App() {
           <Route
             exact
             path="/home"
-            render={() => (isLoggedIn ? <ListCustomer /> : <Login />)}
+            render={() => (isLoggedIn ? <Main /> : <Login />)}
           />
           <Route
             path="/register"
@@ -45,9 +52,10 @@ function App() {
 
           <Redirect exact from="/" to="/home" />
 
-          <Route path="/home" component={Layout} />
+          <Route path="/home" component={Main} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/updatepass" component={UpdatePass} />
 
           <Route path="/listpost" component={ListPost} />
           {/* <Route path="/listpostedit/:postId" component={AddEditPost} /> */}
@@ -58,7 +66,6 @@ function App() {
           <Route path="/customeredit/:customerId" component={EditCustomer1} />
           <Route path="/addcustomer" component={AddCustomer} />
           {/* <Route path="/customerview/:customerId" component={InforCustomer} /> */}
-
         </Switch>
       </BrowserRouter>
     </div>

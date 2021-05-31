@@ -13,7 +13,7 @@ import {
 export const GetCustomers = async (dispatch) => {
   try {
     // api call
-    const { data } = await axiosClient.get("/users");
+    const { data } = await axiosClient.get("/admin/user");
     dispatch(setCustomers(data));
     return { data };
   } catch {
@@ -21,10 +21,19 @@ export const GetCustomers = async (dispatch) => {
   }
 };
 
+export const GetCustomerById = async (dispatch, customer) => {
+  try {
+    // api call
+    await axiosClient.get(`/admin/user/${customer.id}`);
+  } catch {
+    console.log("get customerbyid error")
+  }
+};
+
 export const NewCustomer = async (dispatch, customer) => {
   try {
     // api call
-    const { data } = await axiosClient.post("/users", customer);
+    const { data } = await axiosClient.post("/api/auth/signup", customer);
     dispatch(newCustomer(data));
   } catch {
     dispatch(newCustomerError());
@@ -34,7 +43,7 @@ export const NewCustomer = async (dispatch, customer) => {
 export const EditCustomer = async (dispatch, customer) => {
   try {
     // api call
-    await axiosClient.put(`/users/${customer.id}`, customer);
+    await axiosClient.put(`/admin/user/${customer.id}`, customer);
     dispatch(editCustomer(customer));
   } catch {
     dispatch(editCustomerError());
@@ -44,8 +53,7 @@ export const EditCustomer = async (dispatch, customer) => {
 export const DeleteCustomer = async (dispatch, customer) => {
   try {
     // api call
-    await axiosClient.delete(`/users/${customer.id}`);
-    // await axiosClient.delete('/customers/${customer.id}', { data: { ...customer } });
+    await axiosClient.delete(`/admin/user/${customer.id}`);
     dispatch(deleteCustomer(customer));
   } catch {
     dispatch(deleteCustomerError());

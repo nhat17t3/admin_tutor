@@ -32,15 +32,15 @@ function EditCustomer1(props) {
   //   if (v.length == 0) return null;
 
   useEffect(() => {
-    if(editedCustomer){
+    if (editedCustomer) {
       setName(editedCustomer.name);
-      setEmail(editedCustomer.email)
-      setPassword(editedCustomer.password)
-      setPhonenumber(editedCustomer.phonenumber)
-    } 
+      setEmail(editedCustomer.email);
+      setPassword(editedCustomer.password);
+      setPhonenumber(editedCustomer.phonenumber);
+    }
   }, [editedCustomer]);
 
-  const editcustomer = (e) => {
+  const editcustomer = async(e) => {
     e.preventDefault();
     const Customer = {
       id: customerId,
@@ -50,10 +50,7 @@ function EditCustomer1(props) {
       password,
     };
 
-    setTimeout(() => {
-      alert(JSON.stringify(Customer, null, 2));
-    }, 400);
-    EditCustomer(dispatch, Customer);
+    await EditCustomer(dispatch, Customer);
     history.push("/listcustomer");
   };
 
@@ -65,7 +62,7 @@ function EditCustomer1(props) {
           <div className="col-md-5">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title">ADD CUSTOMER</h3>
+                <h3 className="card-title">EDIT USER</h3>
               </div>
               {/* /.card-header */}
               {/* form start */}
@@ -75,9 +72,9 @@ function EditCustomer1(props) {
                     <label htmlFor="exampleInputEmail1">Name</label>
                     <input
                       type="text"
-                      name="name"
+                      name="username"
                       className="form-control"
-                      placeholder="Full name"
+                      placeholder="Full username"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
@@ -119,44 +116,11 @@ function EditCustomer1(props) {
                       required
                     />
                   </div>
-                  {/* <div className="form-group">
-                    <label htmlFor="exampleInputFile">File input</label>
-                    <div className="input-group">
-                      <div className="custom-file">
-                        <input
-                          type="file"
-                          className="custom-file-input"
-                          id="exampleInputFile"
-                        />
-                        <label
-                          className="custom-file-label"
-                          htmlFor="exampleInputFile"
-                        >
-                          Choose file
-                        </label>
-                      </div>
-                      <div className="input-group-append">
-                        <span className="input-group-text" id>
-                          Upload
-                        </span>
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* <div className="form-check">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      id="exampleCheck1"
-                    />
-                    <label className="form-check-label" htmlFor="exampleCheck1">
-                      Check me out
-                    </label>
-                  </div> */}
                 </div>
                 {/* /.card-body */}
                 <div className="card-footer">
                   <button type="submit" className="btn btn-primary">
-                    Update
+                    Update User
                   </button>
                 </div>
               </form>

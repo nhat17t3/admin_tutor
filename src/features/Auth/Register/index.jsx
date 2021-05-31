@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { SignUp } from "../../../api/authenticationAPI";
-// import { Formik, Field, Form, ErrorMessage } from 'formik';
-//  import * as Yup from 'yup';
+import { Link } from "react-router-dom";
 
 Register.propTypes = {};
 
 function Register(props) {
   const dispatch = useDispatch();
 
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,15 +17,14 @@ function Register(props) {
   const adminRegister = (e) => {
     e.preventDefault();
     const admin = {
-      name,
+      username,
       phonenumber,
       email,
       password,
+      role : ["admin"],
     };
 
-    setTimeout(() => {
-      alert(JSON.stringify(admin, null, 2));
-    }, 400);
+  ;
 
     SignUp(dispatch, admin);
   };
@@ -35,24 +33,24 @@ function Register(props) {
     <>
       <div className="hold-transition register-page">
         <div className="register-box">
-          <div className="register-logo">
+          {/* <div className="register-logo">
             <a href="../../index2.html">
               <b>Admin</b>LTE
             </a>
-          </div>
+          </div> */}
           <div className="card">
             <div className="card-body register-card-body">
-              <p className="login-box-msg">Register a new membership</p>
+              <p className="login-box-msg h2">REGISTER</p>
 
               <form action="" method="post" onSubmit={adminRegister}>
                 <div className=" mb-3">
                   <input
                     type="text"
-                    name="name"
+                    name="username"
                     className="form-control"
-                    placeholder="Full name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     required
                   />
                 </div>
@@ -124,9 +122,9 @@ function Register(props) {
                   Sign up using Google+
                 </a>
               </div>
-              <a href="login.html" className="text-center">
+              <Link to="/login" className="text-center">
                 I already have a membership
-              </a>
+              </Link>
             </div>
             {/* /.form-box */}
           </div>
@@ -139,10 +137,3 @@ function Register(props) {
 }
 
 export default Register;
-
-// {
-//   setTimeout(() => {
-//   alert(JSON.stringify(values, null, 2));
-//   setSubmitting(false);
-//   }, 400);
-// }

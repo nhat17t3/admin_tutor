@@ -12,24 +12,24 @@ function AddCustomer(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
 
-  const addcustomer = (e) => {
+  const addcustomer = async(e) => {
     e.preventDefault();
     const Customer = {
-      name,
+      username,
       phonenumber,
       email,
       password,
+      role: [role],
     };
 
-    setTimeout(() => {
-      alert(JSON.stringify(Customer, null, 2));
-    }, 400);
-    NewCustomer(dispatch, Customer);
+    
+    await NewCustomer(dispatch, Customer);
     history.push("/listcustomer");
   };
 
@@ -41,21 +41,21 @@ function AddCustomer(props) {
           <div className="col-md-5">
             <div className="card card-primary">
               <div className="card-header">
-                <h3 className="card-title">ADD CUSTOMER</h3>
+                <h3 className="card-title">ADD USER</h3>
               </div>
               {/* /.card-header */}
               {/* form start */}
               <form role="form" onSubmit={addcustomer}>
                 <div className="card-body">
                   <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Name</label>
+                    <label htmlFor="exampleInputEmail1">Username</label>
                     <input
                       type="text"
-                      name="name"
+                      name="username"
                       className="form-control"
-                      placeholder="Full name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       required
                     />
                   </div>
@@ -95,44 +95,27 @@ function AddCustomer(props) {
                       required
                     />
                   </div>
-                  {/* <div className="form-group">
-                    <label htmlFor="exampleInputFile">File input</label>
-                    <div className="input-group">
-                      <div className="custom-file">
-                        <input
-                          type="file"
-                          className="custom-file-input"
-                          id="exampleInputFile"
-                        />
-                        <label
-                          className="custom-file-label"
-                          htmlFor="exampleInputFile"
-                        >
-                          Choose file
-                        </label>
-                      </div>
-                      <div className="input-group-append">
-                        <span className="input-group-text" id>
-                          Upload
-                        </span>
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* <div className="form-check">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      id="exampleCheck1"
-                    />
-                    <label className="form-check-label" htmlFor="exampleCheck1">
-                      Check me out
-                    </label>
-                  </div> */}
+
+                  <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Role</label>
+                    <select
+                      name="role"
+                      className="form-control"
+                      value={role}
+                      required
+                      onChange={(e) => setRole(e.target.value)}
+                      
+                    >
+                      <option value="" hidden>Add student or tutor?</option>
+                      <option value={"student"}>Student</option>
+                      <option value={"tutor"}>Tutor</option>
+                    </select>
+                  </div>
                 </div>
                 {/* /.card-body */}
                 <div className="card-footer">
                   <button type="submit" className="btn btn-primary">
-                    Submit
+                    ADD USER
                   </button>
                 </div>
               </form>

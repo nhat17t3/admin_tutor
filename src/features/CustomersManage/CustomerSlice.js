@@ -1,30 +1,5 @@
 import { createSlice,createAction } from '@reduxjs/toolkit';
 
-// const initialStudents = [
-//   {
-//     id: 1,
-//     name: 'Hoang Long Nhat',
-//     email: 'nhat@gmail.com',
-//     phonenumber: 84369621657 ,
-//     password: '123456789'
-//   },
-//   {
-//     id: 2,
-//     name: 'Hoang Long Nhat',
-//     email: 'nhat@gmail.com',
-//     phonenumber: 84369621657 ,
-//     password: '123456789'
-//   },
-//   {
-//     id: 4,
-//     name: 'Hoang Long Nhat',
-//     email: 'nhat@gmail.com',
-//     phonenumber: 84369621657 ,
-//     password: '123456789'
-//   },
-  
-// ];
-
 export const setCustomerError = createAction("setCustomerError");
 export const newCustomerError = createAction("newCustomerError");
 export const editCustomerError = createAction("editCustomerError");
@@ -39,7 +14,7 @@ const CustomerSlice = createSlice({
   },
   reducers: {
     setCustomers: (state, action) => {
-      return { ...state, customers: [...action.payload] };
+      return { ...state, customers: [...action.payload.user] };
     },
 
     newCustomer: (state, action) => {

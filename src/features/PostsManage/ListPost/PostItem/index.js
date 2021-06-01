@@ -29,9 +29,9 @@ function PostItem(props) {
     <>
       <tr key={post.id}>
         <td style={{ width: "10%" }}>{post.id}</td>
-        <td style={{ width: "30%" }}>{post.title}</td>
+        <td style={{ width: "30%", }}>{post.title}</td>
         <td style={{ width: "10%" }}>{post.grade}</td>
-        <td style={{ width: "10%" }}>{post.subject}</td>
+        <td style={{ width: "10%" }}>{post.subject.map((a)=><span>{a}   </span>)}</td>
         <td style={{ width: "10%" }}>{post.price}</td>
         <td style={{ width: "10%" }}>{post.address}</td>
         <td className="project-actions text-center" style={{ width: "20%" }}>

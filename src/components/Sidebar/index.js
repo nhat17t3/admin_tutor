@@ -7,8 +7,8 @@ const Sidebar = (props) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   return (
-    // <aside className="main-sidebar sidebar-dark-primary elevation-4" style={{backgroundColor:"rgb(197, 24, 24)"}}>
-    <aside className="main-sidebar sidebar-dark-primary elevation-4" >
+    <aside className="main-sidebar sidebar-dark-primary elevation-4" style={{backgroundColor:"#a01111"}}>
+    {/* <aside className="main-sidebar sidebar-dark-primary elevation-4" > */}
 
       <NavLink to={"#"} className="brand-link">
         <img

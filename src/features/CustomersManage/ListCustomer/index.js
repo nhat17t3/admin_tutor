@@ -23,7 +23,7 @@ function ListCustomer(props) {
 
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [customersPerPage] = useState(8);
+  const [customersPerPage] = useState(5);
 
   useEffect(() => {
     GetCustomers(dispatch);

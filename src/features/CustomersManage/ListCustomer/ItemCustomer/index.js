@@ -31,24 +31,38 @@ function CustomerItem(props) {
 
   return (
     <>
-     <tr key={customer.id}>
+      <tr key={customer.id}>
         <td>{customer.id}</td>
         <td>{customer.username}</td>
         <td>{customer.email}</td>
         <td>{customer.phonenumber}</td>
         <td>{customer.roles[0]}</td>
-        <td>
-          <div className="project-actions  text-center">
-            <button
-              className="btn btn-danger btn-sm"
-              style={{ margin: 5 }}
-              onClick={handleRemoveClick}
-            >
-              <i className="fas fa-trash"></i>
-              Delete
-            </button>
-          </div>
-        </td>
+        {customer.roles[0] !== "ROLE_ADMIN" ? (
+          <td>
+            <div className="project-actions  text-center">
+              <button
+                className="btn btn-danger btn-sm"
+                style={{ margin: 5 }}
+                onClick={handleRemoveClick}
+              >
+                <i className="fas fa-trash"></i>
+                Delete
+              </button>
+            </div>
+          </td>
+        ) : (
+          <td>
+            <div className="project-actions  text-center">
+              <button
+                className="btn btn-danger btn-sm disabled"
+                style={{ margin: 5 }}
+              >
+                <i className="fas fa-trash "></i>
+                Delete
+              </button>
+            </div>
+          </td>
+        )}
       </tr>
     </>
   );

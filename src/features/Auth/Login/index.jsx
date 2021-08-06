@@ -33,7 +33,7 @@ function Login(props) {
             </a>
           </div> */}
           <div className="card">
-            <div className="card-body register-card-body">
+            <div className="card-body register-card-body" style={{ borderRadius:"16px"}}>
               <p className="login-box-msg h2">LOGIN</p>
 
               <form action="" method="post" onSubmit={adminLogin}>
@@ -80,17 +80,7 @@ function Login(props) {
                 </div>
               </form>
 
-              <div className="social-auth-links text-center">
-                <p>- OR -</p>
-                <a href="#" className="btn btn-block btn-primary">
-                  <i className="fab fa-facebook mr-2" />
-                  Sign up using Facebook
-                </a>
-                <a href="#" className="btn btn-block btn-danger">
-                  <i className="fab fa-google-plus mr-2" />
-                  Sign up using Google+
-                </a>
-              </div>
+           
               {/* <Link to="/register" className="text-center">
                 I don't have account
               </Link> */}

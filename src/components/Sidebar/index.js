@@ -20,7 +20,7 @@ const Sidebar = (props) => {
         <span className="brand-text font-weight-light">Admin</span>
       </NavLink>
       <div className="sidebar">
-        <div className="user-panel mt-3 pb-3 mb-3 d-flex">
+        {/* <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
             <img
               src="/img/user2-160x160.jpg"
@@ -33,7 +33,7 @@ const Sidebar = (props) => {
               Hoàng Long Nhật
             </a>
           </div>
-        </div>
+        </div> */}
 
         <nav className="mt-2">
           <ul

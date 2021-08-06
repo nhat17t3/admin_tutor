@@ -18,7 +18,7 @@ const Footer = (props) => {
             target="_blank"
             className="copyrightlink"
           >
-            Hoàng Long Nhật
+            Nhóm đồ án CNPM
           </a>
         </strong>
       </footer>

@@ -1,20 +1,15 @@
-import "./App.css";
-import Layout from "./components/Layout";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import Login from "./features/Auth/Login";
-import Register from "./features/Auth/Register";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import ListPost from "./features/PostsManage/ListPost";
-import InforPost from "./features/PostsManage/InforPost";
-import ListCustomer from "./features/CustomersManage/ListCustomer";
-import AddCustomer from "./features/CustomersManage/AddCustomer";
-import EditCustomer from "./features/CustomersManage/Editcustomer";
-import EditCustomer1 from "./features/CustomersManage/Editcustomer";
+import { useDispatch, useSelector } from "react-redux";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import "./App.css";
 import { userAuthenticated } from "./features/Auth/authenticationSlice";
-import { GetProfile } from "./api/userApi";
+import Login from "./features/Auth/Login";
 import UpdatePass from "./features/Auth/UpdatePass";
-import Main from "./components/Main";
+import AddCustomer from "./features/CustomersManage/AddCustomer";
+import EditCustomer1 from "./features/CustomersManage/Editcustomer";
+import ListCustomer from "./features/CustomersManage/ListCustomer";
+import InforPost from "./features/PostsManage/InforPost";
+import ListPost from "./features/PostsManage/ListPost";
 
 function App() {
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -39,11 +34,7 @@ function App() {
           <Route
             exact
             path="/home"
-            render={() => (isLoggedIn ? <Main /> : <Login />)}
-          />
-          <Route
-            path="/register"
-            render={() => (isLoggedIn ? <Redirect to="/home" /> : <Register />)}
+            render={() => (isLoggedIn ? <ListCustomer /> : <Login />)}
           />
           <Route
             path="/login"
@@ -52,9 +43,8 @@ function App() {
 
           <Redirect exact from="/" to="/home" />
 
-          <Route path="/home" component={Main} />
+          <Route path="/home" component={ListCustomer} />
           <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
           <Route path="/updatepass" component={UpdatePass} />
 
           <Route path="/listpost" component={ListPost} />

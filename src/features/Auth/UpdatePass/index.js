@@ -49,14 +49,14 @@ function UpdatePass(props) {
           <div className="col-md-5">
             <div className="card card-primary" >
               <div className="card-header">
-                <h3 className="card-title">ADD USER</h3>
+                <h3 className="card-title">Update password</h3>
               </div>
               {/* /.card-header */}
               {/* form start */}
               <form role="form" onSubmit={formik.handleSubmit}>
                 <div className="card-body">
                   <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Password</label>
+                    <label htmlFor="exampleInputEmail1">Old Password</label>
                     <input
                       type="password"
                       placeholder="Old password"
@@ -74,7 +74,7 @@ function UpdatePass(props) {
                       )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Email</label>
+                    <label htmlFor="exampleInputPassword1">New Password</label>
                     <input
                       type="password"
                       placeholder="New password"
@@ -92,7 +92,7 @@ function UpdatePass(props) {
                       )}
                   </div>
                   <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Phonenumber</label>
+                    <label htmlFor="exampleInputPassword1">Repeat New Password</label>
                     <input
                       type="password"
                       placeholder="Repeat new password"

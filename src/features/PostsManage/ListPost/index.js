@@ -22,8 +22,11 @@ function ListPost(props) {
   const [listpost, setListpost] = useState([]);
 
   const [loading, setLoading] = useState(false);
+  // phan trang
   const [currentPage, setCurrentPage] = useState(1);
   const [customersPerPage] = useState(5);
+  const [searchField, setSearchField] = useState("");
+
 
   useEffect(() => {
     GetPosts(dispatch);
@@ -35,6 +38,17 @@ function ListPost(props) {
     setListpost(posts);
   }, [posts]);
 
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const listHandleSearch = posts.filter((post) => {
+      return (
+        post.title?.toLowerCase().includes(searchField.toLowerCase()) ||
+        post.grade?.toLowerCase().includes(searchField.toLowerCase())
+      );
+    });
+    setListpost(listHandleSearch);
+  };
   // Get current posts
    const indexOfLastCustomer = currentPage * customersPerPage;
    const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
@@ -119,15 +133,19 @@ function ListPost(props) {
                     </div>
                     <div className="col-sm-12 col-md-6">
                       <div id="example1_filter" className="dataTables_filter">
+                        <form onSubmit={handleSearch}>
                         <label>
                           Search:
                           <input
                             type="search"
                             className="form-control form-control-sm"
-                            placeholder
+                            placeholder="search posts"
                             aria-controls="example1"
+                            value={searchField}
+                        onChange={(e) => setSearchField(e.target.value)}
                           />
                         </label>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -141,13 +159,13 @@ function ListPost(props) {
                       >
                         <thead data-test="datatable-head">
                           <tr>
-                            <th>id</th>
-                            <th>Title</th>
-                            <th>Grade</th>
-                            <th>Subject</th>
-                            <th>Price</th>
-                            <th>Address</th>
-                            <th>Action</th>
+                            <th style={{ width: "10%" }}>id</th>
+                            <th style={{ width: "30%" }}>Title</th>
+                            <th style={{ width: "10%" }}>Grade</th>
+                            <th style={{ width: "10%" }}>Subject</th>
+                            <th style={{ width: "10%" }}>Price</th>
+                            <th style={{ width: "10%" }}>Address</th>
+                            <th style={{ width: "20%" }}>Action</th>
                           </tr>
                         </thead>
                         <tbody data-test="table-body">

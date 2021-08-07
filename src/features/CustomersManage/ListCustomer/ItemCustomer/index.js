@@ -32,13 +32,13 @@ function CustomerItem(props) {
   return (
     <>
       <tr key={customer.id}>
-        <td>{customer.id}</td>
-        <td>{customer.username}</td>
-        <td>{customer.email}</td>
-        <td>{customer.phonenumber}</td>
-        <td>{customer.roles[0]}</td>
+        <td style={{ width: "10%" }}>{customer.id}</td>
+        <td style={{ width: "20%" }}>{customer.username}</td>
+        <td style={{ width: "20%" }}>{customer.email}</td>
+        <td style={{ width: "20%" }}>{customer.phonenumber}</td>
+        <td style={{ width: "15%" }}>{customer.roles[0]}</td>
         {customer.roles[0] !== "ROLE_ADMIN" ? (
-          <td>
+          <td style={{ width: "15%" }}>
             <div className="project-actions  text-center">
               <button
                 className="btn btn-danger btn-sm"
@@ -51,7 +51,7 @@ function CustomerItem(props) {
             </div>
           </td>
         ) : (
-          <td>
+          <td style={{ width: "15%" }}>
             <div className="project-actions  text-center">
               <button
                 className="btn btn-danger btn-sm disabled"

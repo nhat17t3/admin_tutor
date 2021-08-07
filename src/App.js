@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Main from "./components/Main";
 import { userAuthenticated } from "./features/Auth/authenticationSlice";
 import Login from "./features/Auth/Login";
 import UpdatePass from "./features/Auth/UpdatePass";
@@ -34,7 +35,7 @@ function App() {
           <Route
             exact
             path="/home"
-            render={() => (isLoggedIn ? <ListCustomer /> : <Login />)}
+            render={() => (isLoggedIn ? <Main /> : <Login />)}
           />
           <Route
             path="/login"
@@ -43,7 +44,7 @@ function App() {
 
           <Redirect exact from="/" to="/home" />
 
-          <Route path="/home" component={ListCustomer} />
+          <Route path="/home" component={Main} />
           <Route path="/login" component={Login} />
           <Route path="/updatepass" component={UpdatePass} />
 

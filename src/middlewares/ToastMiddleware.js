@@ -30,9 +30,9 @@ import { toast } from "react-toastify";
 
 const ToastMiddleware = () => (next) => (action) => {
   switch (action.type) {
-    case setPosts.type:
-      toast.success("call api posts successfully");
-      break;
+    // case setPosts.type:
+    //   toast.success("call api posts successfully");
+    //   break;
     case newPost.type:
       toast.success("New post added successfully");
       break;
@@ -54,9 +54,9 @@ const ToastMiddleware = () => (next) => (action) => {
     case deletePostError.type:
       toast.error("Error deleting post");
       break;
-    case setCustomers.type:
-      toast.success("call api Customer successfully");
-      break;
+    // case setCustomers.type:
+    //   toast.success("call api Customer successfully");
+    //   break;
     case newCustomer.type:
       toast.success("New Customer added successfully");
       break;

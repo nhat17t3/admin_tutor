@@ -11,12 +11,13 @@ const Layout = (props) => {
         <Header />
         <Sidebar />
         {/* <!-- Main content --> */}
-        <div class="content-wrapper">
+        <div className="content-wrapper">
           <section className="content">
             <div className="container-fluid" style={{ paddingTop: "20px" }}>
             </div>
+            {props.children}
           </section>
-          {props.children}
+          
         </div>
 
         <Footer />

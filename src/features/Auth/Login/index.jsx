@@ -24,73 +24,80 @@ function Login(props) {
   };
   return (
     <>
-    <ToastContainer />
-      <div className="hold-transition register-page">
-        <div className="register-box">
-          {/* <div className="register-logo">
-            <a href="../../index2.html">
-              <b>Admin</b>LTE
+      <ToastContainer />
+
+      <div className="login-box" style={{ margin: "200px auto" }}>
+        {/* /.login-logo */}
+        <div className="card card-outline card-primary">
+          <div className="card-header text-center">
+            <a href="#" className="h1">
+              <b>Login</b>
             </a>
-          </div> */}
-          <div className="card">
-            <div className="card-body register-card-body" style={{ borderRadius:"16px"}}>
-              <p className="login-box-msg h2">LOGIN</p>
-
-              <form action="" method="post" onSubmit={adminLogin}>
-                <div className=" mb-3">
-                  <input
-                    type="text"
-                    name="username"
-                    className="form-control"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className=" mb-3">
-                  <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="row">
-                  {/* <div className="col-8">
-                      <div className="icheck-primary">
-
-                        <input type="checkbox" id="agreeTerms" name="terms" defaultValue="agree" />
-                        <label htmlFor="agreeTerms">
-                          I agree to the <a href="#">terms</a>
-                        </label>
-                      </div>
-                    </div> */}
-
-                  <div className="col">
-                    <button type="submit" className="btn btn-success btn-block">
-                      Login
-                    </button>
+          </div>
+          <div className="card-body">
+            {/* <p className="login-box-msg">Sign in to start your session</p> */}
+            <form action="" method="post" onSubmit={adminLogin}>
+              <div className="input-group mb-3">
+                <input
+                  type="text"
+                  name="username"
+                  className="form-control"
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
+                <div className="input-group-append">
+                  <div className="input-group-text">
+                    <span className="fas fa-envelope" />
                   </div>
                 </div>
-              </form>
+              </div>
+              <div className="input-group mb-3">
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <div className="input-group-append">
+                  <div className="input-group-text">
+                    <span className="fas fa-lock" />
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-4">
+                  {/* <div className="icheck-primary">
+              <input type="checkbox" id="remember" />
+              <label htmlFor="remember">
+                Remember Me
+              </label>
+            </div> */}
+                </div>
+                {/* /.col */}
+                <div className="col-4">
+                  <button type="submit" className="btn btn-primary btn-block">
+                    Sign In
+                  </button>
+                </div>
+                {/* /.col */}
+              </div>
+            </form>
 
-           
-              {/* <Link to="/register" className="text-center">
-                I don't have account
-              </Link> */}
-            </div>
-            {/* /.form-box */}
+            {/* /.social-auth-links */}
           </div>
-          {/* /.card */}
+          {/* /.card-body */}
         </div>
-        {/* /.register-box */}
+        {/* /.card */}
       </div>
+      {/* /.login-box */}
+      {/* jQuery */}
+      {/* Bootstrap 4 */}
+      {/* AdminLTE App */}
     </>
   );
 }

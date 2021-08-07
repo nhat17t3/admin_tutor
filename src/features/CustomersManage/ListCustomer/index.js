@@ -24,6 +24,7 @@ function ListCustomer(props) {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [customersPerPage] = useState(5);
+  const [searchField, setSearchField] = useState("");
 
   useEffect(() => {
     GetCustomers(dispatch);
@@ -34,6 +35,18 @@ function ListCustomer(props) {
   useEffect(() => {
     setListcustomer(customers);
   }, [customers]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const listHandleSearch = customers.filter((customer) => {
+      return (
+        customer.username?.toLowerCase().includes(searchField.toLowerCase()) ||
+        customer.email?.toLowerCase().includes(searchField.toLowerCase())
+      );
+    });
+    setListcustomer(listHandleSearch);
+  };
+
 
   // Get current tutors
   const indexOfLastCustomer = currentPage * customersPerPage;
@@ -90,7 +103,7 @@ function ListCustomer(props) {
     
       <Layout>
         <ToastContainer />
-        <h1 className="text-center">List Customer</h1>
+        <h1 className="text-center">List User</h1>
         <div className="row">
           <div className="col-md-1" />
           <div className="col-md-10">
@@ -127,16 +140,20 @@ function ListCustomer(props) {
                       </Link>
                     </div>
                     <div className="col-sm-12 col-md-6">
-                      <div id="example1_filter" className="dataTables_filter">
+                      <div id="example1_filter" className="dataTables_filter" >
+                      <form onSubmit={handleSearch}>
                         <label>
                           Search:
                           <input
                             type="search"
                             className="form-control form-control-sm"
-                            placeholder
+                            placeholder="Search user"
                             aria-controls="example1"
+                            value={searchField}
+                        onChange={(e) => setSearchField(e.target.value)}
                           />
                         </label>
+                      </form>
                       </div>
                     </div>
                   </div>
@@ -150,12 +167,12 @@ function ListCustomer(props) {
                       >
                         <thead data-test="datatable-head">
                           <tr>
-                            <th>id</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Phonenumber</th>
-                            <th>Role</th>
-                            <th>Action</th>
+                            <th style={{ width: "10%" }}>id</th>
+                            <th style={{ width: "20%" }}>Username</th>
+                            <th style={{ width: "20%" }}>Email</th>
+                            <th style={{ width: "20%" }}>Phonenumber</th>
+                            <th style={{ width: "15%" }}>Role</th>
+                            <th style={{ width: "15%" }}>Action</th>
                           </tr>
                         </thead>
                         <tbody data-test="table-body">
